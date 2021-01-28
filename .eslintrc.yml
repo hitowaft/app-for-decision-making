@@ -1,0 +1,51 @@
+env:
+  es6: true
+  node: true
+  mocha: true
+
+parser: vue-eslint-parser
+
+extends:
+  - standard
+  - eslint:recommended
+  - plugin:prettier/recommended
+  - plugin:vue/strongly-recommended
+  - prettier/vue
+
+
+plugins:
+  - prettier
+  - vue
+
+globals:
+  Atomics: readonly
+  SharedArrayBuffer: readonly
+
+parserOptions:
+  ecmaVersion: 2018
+  sourceType: module
+
+rules:
+  complexity:
+    - error
+    - 10
+
+  no-path-concat:
+    - warn
+
+  prettier/prettier:
+    - error
+    - singleQuote: true
+      semi: false
+      printWidth: 100
+
+  object-shorthand:
+    - error
+    - always
+
+  require-await:
+    - error
+
+  vue/mustache-interpolation-spacing:
+    - error
+    - always
