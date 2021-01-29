@@ -26,6 +26,7 @@ export default {
       subjects: [],
       val: '',
       newSub: '',
+      subId: 0,
       selectSubject() {
         if (!app.val) {
           return ''
@@ -36,12 +37,18 @@ export default {
         if (!app.newSub) {
           return ''
         }
-        const size = app.subjects.length + 1
-        app.$set(app.subjects, size - 1, { id: size, theme: app.newSub })
+        app.$set(app.subjects, app.subjects.length, { id: app.subId, theme: app.newSub })
         app.newSub = ''
+        app.subId++
       },
       deleteSubject() {
-        app.subjects.splice(app.val - 1, 1)
+        let target
+        for (let i = 0; i < app.subjects.length; i++) {
+          if (app.subjects[i].id === app.val) {
+            target = i
+          }
+        }
+        app.subjects.splice(target, 1)
       },
     }
   },
