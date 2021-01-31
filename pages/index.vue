@@ -1,6 +1,7 @@
 <template>
   <div>
     <title>{{ title }}</title>
+    <!-- <pre>{{ $data }}</pre> -->
     <h1>{{ title }}</h1>
     <p>テーマを選ぶ</p>
     <ul>
@@ -14,7 +15,7 @@
 
     <p>テーマを追加する</p>
     <input type="text" v-model="newSub" />
-    <button type="button" @click="addSubject">追加</button>
+    <button type="button" @click="addSubject()">追加</button>
   </div>
 </template>
 
@@ -22,35 +23,38 @@
 export default {
   data(app) {
     return {
-      title: '決断支援アプリ',
+      title: 'タイトル',
       subjects: [],
       val: '',
       newSub: '',
       subId: 0,
-      selectSubject() {
-        if (!app.val) {
-          return ''
-        }
-        return `/subject/${this.val}`
-      },
-      addSubject(newSub) {
-        if (!app.newSub) {
-          return ''
-        }
-        app.$set(app.subjects, app.subjects.length, { id: app.subId, theme: app.newSub })
-        app.newSub = ''
-        app.subId++
-      },
-      deleteSubject() {
-        let target
-        for (let i = 0; i < app.subjects.length; i++) {
-          if (app.subjects[i].id === app.val) {
-            target = i
-          }
-        }
-        app.subjects.splice(target, 1)
-      },
     }
+  },
+  methods: {
+    selectSubject() {
+      if (this.val === '') {
+        return ''
+      }
+      return `/subject/${this.val}`
+    },
+    addSubject() {
+      if (!this.newSub) {
+        return ''
+      }
+      this.$set(this.subjects, this.subjects.length, { id: this.subId, theme: this.newSub })
+      this.newSub = ''
+      this.subId++
+    },
+    deleteSubject() {
+      let target
+      for (let i = 0; i < this.subjects.length; i++) {
+        if (this.subjects[i].id === this.val) {
+          target = i
+        }
+      }
+      this.subjects.splice(target, 1)
+      this.val = ''
+    },
   },
 }
 </script>

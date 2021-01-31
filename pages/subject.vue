@@ -1,7 +1,13 @@
 <template>
-  <div></div>
+  <div>
+    <p>subject</p>
+  </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return { title: '' }
+  },
+}
 </script>
