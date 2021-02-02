@@ -1,7 +1,7 @@
 <template>
   <div>
     <title>{{ title }}</title>
-    <!-- <pre>{{ $data }}</pre> -->
+    <pre>{{ $data }}</pre>
     <h1>{{ title }}</h1>
     <p>テーマを選ぶ</p>
     <ul>
@@ -46,12 +46,7 @@ export default {
       this.subId++
     },
     deleteSubject() {
-      let target
-      for (let i = 0; i < this.subjects.length; i++) {
-        if (this.subjects[i].id === this.val) {
-          target = i
-        }
-      }
+      const target = this.subjects.findIndex((x) => x.id === this.val)
       this.subjects.splice(target, 1)
       this.val = ''
     },
